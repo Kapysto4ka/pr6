@@ -1,6 +1,5 @@
 const header = document.querySelector('header')
 const section = document.querySelector('section')
-
 const requestURL = 'https://semegenkep.github.io/json/example.json'
 const request = new XMLHttpRequest()
 request.open('GET', requestURL)
@@ -12,6 +11,7 @@ request.onload = function(){
     const superHeroes = request.response
     populateHeader(superHeroes)
     showHeroes(superHeroes)
+    console.log(superHeroes)
 }
 
 function populateHeader(superHeroes){
@@ -24,9 +24,8 @@ function populateHeader(superHeroes){
     header.append(squadName)
     header.append(headerCity)
 }
-
 function showHeroes(superHeroes){
-    for (let i = 0; i < 3; i++){
+    for (let i = 0; i < superHeroes.members.length; i++){
         const Hero = document.createElement('article')
         Hero.className = 'sectionHero'
         section.append(Hero)
