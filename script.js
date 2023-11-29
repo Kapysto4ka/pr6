@@ -11,7 +11,6 @@ request.onload = function(){
     const superHeroes = request.response
     populateHeader(superHeroes)
     showHeroes(superHeroes)
-    console.log(superHeroes)
 }
 
 function populateHeader(superHeroes){
@@ -24,22 +23,22 @@ function populateHeader(superHeroes){
     header.append(squadName)
     header.append(headerCity)
 }
-function showHeroes(superHeroes){
-    for (let i = 0; i < superHeroes.members.length; i++){
+function showHeroes(superHeroes) {
+    superHeroes.members.forEach(function (hero) {
         const Hero = document.createElement('article')
         Hero.className = 'sectionHero'
         section.append(Hero)
-    
+
         const sectionHeroName = document.createElement('h2')
-        sectionHeroName.innerText = superHeroes.members[i].name
+        sectionHeroName.innerText = hero.name
         Hero.append(sectionHeroName)
-    
+
         const secretIdentity = document.createElement('p')
-        secretIdentity.innerText = `Secret identity: ${superHeroes.members[i].secretIdentity}`
+        secretIdentity.innerText = `Secret identity: ${hero.secretIdentity}`
         Hero.append(secretIdentity)
 
         const age = document.createElement('p')
-        age.innerText = `Secret identity: ${superHeroes.members[i].age}`
+        age.innerText = `Age: ${hero.age}`
         Hero.append(age)
 
         const superpowers = document.createElement('p')
@@ -47,11 +46,11 @@ function showHeroes(superHeroes){
         Hero.append(superpowers)
 
         const superpowersList = document.createElement('ul')
-        for (let j = 0; j < superHeroes.members[i].powers.length; j++){
+        hero.powers.forEach(function (power) {
             const superpower = document.createElement('li')
-            superpower.innerText = superHeroes.members[i].powers[j]
+            superpower.innerText = power
             superpowersList.append(superpower)
-        }
+        })
         Hero.append(superpowersList)
-    }
+    })
 }
